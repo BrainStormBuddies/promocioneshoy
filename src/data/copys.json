@@ -1,0 +1,174 @@
+{
+    "hero": {
+        "title": "Todas las promociones de tus tarjetas **en un solo lugar**",
+        "subtitle": "Ahorra tiempo y dinero descubriendo las mejores ofertas y promociones de tus tarjetas de crédito, sin complicaciones, en un solo lugar.",
+        "cta": "👉 Únete a la lista de espera",
+        "typewriterPhrases": [
+            "Todas las promociones",
+            "Ofertas y descuentos",
+            "Recompensas increíbles",
+            "Beneficios exclusivos"
+        ],
+        "typewriterComplement": "de tus tarjetas **hoy mismo**"
+    },
+    "painPromise": {
+        "problemTitle": "¿Te suena familiar?",
+        "problems": [
+            "¿Te pierdes promociones porque cada banco y comercio las publica en lugares distintos?",
+            "¿Sientes que aprovechas poco los beneficios de tus tarjetas?",
+            "¿Te toma demasiado tiempo buscar y comparar ofertas?"
+        ],
+        "solutionTitle": "Tenemos la solución perfecta para ti",
+        "solution": "Con nuestro sitio tendrás **todas las promociones en un solo lugar**. Gratis, actualizado y fácil de usar, para que solo te enfoques en ahorrar."
+    },
+    "features": {
+        "title": "✨ ¿Qué encontrarás en nuestra plataforma?",
+        "list": [
+            {
+                "icon": "🔍",
+                "title": "Explora promociones fácilmente",
+                "description": "Busca por banco, tarjeta o comercio."
+            },
+            {
+                "icon": "🛍️",
+                "title": "Promos en comercios locales e internacionales",
+                "description": "Desde restaurantes hasta viajes y tecnología."
+            },
+            {
+                "icon": "⏰",
+                "title": "Actualización constante",
+                "description": "Información siempre al día para que no te pierdas ninguna oferta."
+            },
+            {
+                "icon": "📱",
+                "title": "Acceso gratuito y rápido",
+                "description": "Sin registros complicados ni costos ocultos."
+            },
+            {
+                "icon": "✅",
+                "title": "Fuentes confiables",
+                "description": "Recopilamos promociones directamente de bancos y comercios oficiales."
+            }
+        ]
+    },
+    "howItWorks": {
+        "title": "Así de fácil es aprovechar más tus tarjetas",
+        "steps": [
+            {
+                "icon": "🔎",
+                "dynamicIcon": "Search",
+                "number": 1,
+                "title": "Explora",
+                "subtitle": "las promociones disponibles."
+            },
+            {
+                "icon": "⚙️",
+                "dynamicIcon": "Filter",
+                "number": 2,
+                "title": "Filtra",
+                "subtitle": "por tu banco, tarjeta o categoría de interés."
+            },
+            {
+                "icon": "💸",
+                "dynamicIcon": "Heart",
+                "number": 3,
+                "title": "Disfruta",
+                "subtitle": "tus beneficios y empieza a ahorrar."
+            }
+        ]
+    },
+    "middleCta": {
+        "motivationalText": "No dejes que las promociones pasen desapercibidas.",
+        "cta": "👉 Únete a la lista de espera"
+    },
+    "faq": {
+        "title": "Preguntas Frecuentes",
+        "questions": [
+            {
+                "question": "¿El acceso tendrá algún costo?",
+                "answer": "No. El sitio es 100% gratuito."
+            },
+            {
+                "question": "¿Necesito registrarme para usarlo?",
+                "answer": "No es obligatorio. Puedes explorar libremente, aunque al registrarte podrás recibir alertas personalizadas."
+            },
+            {
+                "question": "¿De dónde obtienen las promociones?",
+                "answer": "De fuentes públicas y oficiales: sitios web de bancos, comercios y redes sociales, todo organizado en un solo lugar."
+            },
+            {
+                "question": "¿Está disponible en todo el país?",
+                "answer": "Sí, podrás ver promociones nacionales y en línea."
+            }
+        ]
+    },
+    "waitlist": {
+        "title": "Sé de los primeros en acceder 🎉",
+        "subtitle": "Regístrate gratis y recibe un aviso en cuanto lancemos la plataforma.",
+        "form": {
+            "emailLabel": "Correo electrónico",
+            "emailPlaceholder": "tu@email.com",
+            "submitButton": "Unirme a la lista de espera"
+        }
+    },
+    "disclaimer": {
+        "header": "⚠️ Importante:",
+        "text": "Este sitio no está afiliado ni patrocinado por ningún banco o entidad financiera. Las promociones aquí listadas son recopiladas de fuentes públicas y oficiales. Recomendamos verificar los términos y condiciones directamente con el banco o comercio antes de aprovechar cualquier oferta.",
+        "alternativeText": "La información publicada en este sitio se recopila de fuentes oficiales de bancos y comercios. Siempre recomendamos consultar la fuente original para corroborar las condiciones, restricciones y vigencia de cada promoción."
+    },
+    "navigation": {
+        "brand": "Promociones Hoy!",
+        "links": [
+            {
+                "label": "Inicio",
+                "href": "#hero"
+            },
+            {
+                "label": "Cómo funciona",
+                "href": "#how-it-works"
+            },
+            {
+                "label": "Beneficios",
+                "href": "#features"
+            },
+            {
+                "label": "FAQ",
+                "href": "#faq"
+            }
+        ]
+    },
+    "footer": {
+        "brand": "Promociones Hoy!",
+        "description": "Todas las promociones de tarjetas en un solo lugar",
+        "copyright": "© 2025 Promociones Hoy!. Todos los derechos reservados.",
+        "links": [
+            {
+                "label": "Términos de Servicio",
+                "href": "#terms"
+            },
+            {
+                "label": "Política de Privacidad",
+                "href": "#privacy"
+            },
+            {
+                "label": "Contacto",
+                "href": "#contact"
+            }
+        ]
+    },
+    "common": {
+        "loading": "Cargando...",
+        "error": "Ha ocurrido un error",
+        "success": "¡Éxito!",
+        "close": "Cerrar",
+        "cancel": "Cancelar",
+        "confirm": "Confirmar",
+        "save": "Guardar",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "back": "Volver",
+        "next": "Siguiente",
+        "previous": "Anterior",
+        "tryAgain": "Intentar de nuevo"
+    }
+}
