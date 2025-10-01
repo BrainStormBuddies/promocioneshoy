@@ -3,15 +3,40 @@
 import copys from "@/data/copys.json";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMenuOpen(false);
+  };
+
+  const handleWaitlistClick = () => {
+    // If we're on the main page, scroll to the section
+    if (pathname === "/") {
+      scrollToSection("waitlist");
+    } else {
+      // If we're on another page, navigate to main page with hash
+      router.push("/#waitlist");
+    }
+    setIsMenuOpen(false);
+  };
+
+  const handleSectionNavigation = (sectionId: string) => {
+    // If we're on the main page, scroll to the section
+    if (pathname === "/") {
+      scrollToSection(sectionId);
+    } else {
+      // If we're on another page, navigate to main page with hash
+      router.push(`/#${sectionId}`);
     }
     setIsMenuOpen(false);
   };
@@ -25,36 +50,41 @@ const Navbar = () => {
             <div className="flex items-center -mt-2">
               <img src="/favicon.svg" alt="Logo" className="h-10 w-12" />
             </div>
-            <h1 className="text-xl font-bold text-foreground">
+            <button
+              onClick={() => router.push("/")}
+              className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+            >
               {copys.navigation.brand}
-            </h1>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("features")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+            <Button
+              variant="ghost"
+              onClick={() => handleSectionNavigation("features")}
             >
               Características
-            </button>
-            <button
-              onClick={() => scrollToSection("faqs")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={() => handleSectionNavigation("faqs")}
             >
               Preguntas Frecuentes
-            </button>
+            </Button>
             <Button
-              onClick={() => scrollToSection("waitlist")}
-              className="bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white px-6"
+              onClick={handleWaitlistClick}
+              className="bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white"
             >
               Lista de Espera
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-foreground"
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -62,27 +92,29 @@ const Navbar = () => {
             ) : (
               <Menu className="h-6 w-6" />
             )}
-          </button>
+          </Button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 space-y-4 pb-4">
-            <button
-              onClick={() => scrollToSection("features")}
-              className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+            <Button
+              variant="ghost"
+              className="w-full justify-start"
+              onClick={() => handleSectionNavigation("features")}
             >
               Características
-            </button>
-            <button
-              onClick={() => scrollToSection("faqs")}
-              className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+            </Button>
+            <Button
+              variant="ghost"
+              className="w-full justify-start"
+              onClick={() => handleSectionNavigation("faqs")}
             >
               Preguntas Frecuentes
-            </button>
+            </Button>
             <Button
               className="w-full bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white"
-              onClick={() => scrollToSection("waitlist")}
+              onClick={handleWaitlistClick}
             >
               Lista de Espera
             </Button>
