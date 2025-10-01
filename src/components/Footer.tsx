@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CreditCard,
   Facebook,
@@ -7,10 +9,29 @@ import {
   Twitter,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import copys from "@/data/copys.json";
 
 const Footer = () => {
   const { footer } = copys;
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleSectionNavigation = (href: string) => {
+    // Extract section ID from href (e.g., "#features" -> "features")
+    const sectionId = href.replace("#", "");
+
+    // If we're on the main page, scroll to the section
+    if (pathname === "/") {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If we're on another page, navigate to main page with hash
+      router.push(`/#${sectionId}`);
+    }
+  };
 
   return (
     <footer className="bg-foreground text-background py-12">
@@ -61,12 +82,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {copys.navigation.links.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-background/80 hover:text-brand-primary transition-colors"
+                  <button
+                    onClick={() => handleSectionNavigation(link.href)}
+                    className="text-background/80 hover:text-brand-primary transition-colors text-left cursor-pointer"
                   >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
