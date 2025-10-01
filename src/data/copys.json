@@ -144,11 +144,11 @@
         "links": [
             {
                 "label": "Términos de Servicio",
-                "href": "#terms"
+                "href": "/terms"
             },
             {
                 "label": "Política de Privacidad",
-                "href": "#privacy"
+                "href": "/privacy"
             },
             {
                 "label": "Contacto",

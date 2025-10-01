@@ -6,6 +6,7 @@ import {
   Mail,
   Twitter,
 } from "lucide-react";
+import Link from "next/link";
 import copys from "@/data/copys.json";
 
 const Footer = () => {
@@ -77,12 +78,21 @@ const Footer = () => {
             <ul className="space-y-2">
               {footer.links.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-background/80 hover:text-brand-primary transition-colors"
-                  >
-                    {link.label}
-                  </a>
+                  {link.href.startsWith("/") ? (
+                    <Link
+                      href={link.href}
+                      className="text-background/80 hover:text-brand-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-background/80 hover:text-brand-primary transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
