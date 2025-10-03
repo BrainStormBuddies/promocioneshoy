@@ -1,7 +1,8 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "../styles/globals.css";
-import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,9 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Promociones Hoy",
   description: "Todas las tarjetas de crédito en un solo lugar",
-    icons: {
-        icon: "favicon.svg",
-    },
+  icons: {
+    icon: "favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
         <Analytics />
+        <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
       </body>
     </html>
   );
