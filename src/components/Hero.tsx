@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import copys from "@/data/copys.json";
-import { useEffect, useState, useCallback } from "react";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 
 const Hero = () => {
   const scrollToWaitlist = useCallback(() => {
@@ -52,7 +52,10 @@ const Hero = () => {
   }, [displayText, isDeleting, currentIndex, typeSpeed, typewriterPhrases]);
 
   return (
-    <section className="pt-28 pb-16 bg-gradient-to-br from-brand-light to-background">
+    <section
+      id="hero"
+      className="pt-28 pb-16 bg-gradient-to-br from-brand-light to-background"
+    >
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
