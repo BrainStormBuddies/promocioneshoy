@@ -94,7 +94,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
               <button
                 onClick={scrollToWaitlist}
-                className="bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white px-8 py-3 text-lg rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary-dark focus:ring-offset-2 h-11"
+                className="bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white px-8 py-2 text-lg rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary-dark focus:ring-offset-2 h-11"
                 type="button"
               >
                 {copys.hero.cta}
