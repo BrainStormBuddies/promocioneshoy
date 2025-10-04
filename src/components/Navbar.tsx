@@ -1,10 +1,10 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import copys from "@/data/copys.json";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,7 +68,7 @@ const Navbar = () => {
             </Button>
             <Button
               variant="ghost"
-              onClick={() => handleSectionNavigation("faqs")}
+              onClick={() => handleSectionNavigation("faq")}
             >
               Preguntas Frecuentes
             </Button>
