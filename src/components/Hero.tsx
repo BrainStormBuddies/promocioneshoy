@@ -53,7 +53,7 @@ const Hero = () => {
 
   return (
     <section
-      id="hero"
+      id="home"
       className="pt-28 pb-16 bg-gradient-to-br from-brand-light to-background"
     >
       <div className="container mx-auto px-4">

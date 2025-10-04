@@ -20,14 +20,11 @@ const Navbar = () => {
   };
 
   const handleWaitlistClick = () => {
-    // If we're on the main page, scroll to the section
-    if (pathname === "/") {
-      scrollToSection("waitlist");
-    } else {
-      // If we're on another page, navigate to main page with hash
-      router.push("/#waitlist");
-    }
-    setIsMenuOpen(false);
+    handleSectionNavigation("waitlist");
+  };
+
+  const handleBrandClick = () => {
+    handleSectionNavigation("home");
   };
 
   const handleSectionNavigation = (sectionId: string) => {
@@ -51,7 +48,7 @@ const Navbar = () => {
               <img src="/favicon.svg" alt="Logo" className="h-10 w-12" />
             </div>
             <button
-              onClick={() => router.push("/")}
+              onClick={handleBrandClick}
               className="text-xl font-bold text-foreground hover:text-primary transition-colors"
             >
               {copys.navigation.brand}
