@@ -124,6 +124,10 @@
                 "href": "#hero"
             },
             {
+                "label": "Promociones",
+                "href": "/promotions"
+            },
+            {
                 "label": "Cómo funciona",
                 "href": "#how-it-works"
             },
