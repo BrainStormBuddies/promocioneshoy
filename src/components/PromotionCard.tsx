@@ -2,6 +2,7 @@
 
 import type { Promotion } from "@/app/promotions/page";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { formatPeriod } from "@/lib/utils";
 import { Calendar, Tag } from "lucide-react";
 
 interface PromotionCardProps {
@@ -10,15 +11,6 @@ interface PromotionCardProps {
 }
 
 const PromotionCard = ({ promotion, onClick }: PromotionCardProps) => {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("es-ES", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
-
   const getPromotionTypeBadge = (type: string) => {
     const types: { [key: string]: { label: string; color: string } } = {
       descuento: { label: "Descuento", color: "bg-primary/10 text-primary" },
@@ -72,11 +64,7 @@ const PromotionCard = ({ promotion, onClick }: PromotionCardProps) => {
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
             <span>
-              {formatDate(promotion.start_date)}
-              {promotion.end_date &&
-                promotion.end_date !== promotion.start_date && (
-                  <> - {formatDate(promotion.end_date)}</>
-                )}
+              {formatPeriod(promotion.start_date, promotion.end_date, "-")}
             </span>
           </div>
           {/* Expired Badge */}

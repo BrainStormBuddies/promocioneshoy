@@ -2,6 +2,7 @@
 
 import type { Promotion } from "@/app/promotions/page";
 import { Button } from "@/components/ui/button";
+import { formatPeriod } from "@/lib/utils";
 import { Calendar, ExternalLink, Mail, Tag, X } from "lucide-react";
 import { useEffect } from "react";
 
@@ -29,15 +30,6 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
       document.removeEventListener("keydown", handleEscape);
     };
   }, [onClose]);
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("es-ES", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
 
   const getPromotionTypeBadge = (type: string) => {
     const types: { [key: string]: { label: string; color: string } } = {
@@ -110,11 +102,8 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
                 <span>
-                  Válido: {formatDate(promotion.start_date)}
-                  {promotion.end_date &&
-                    promotion.end_date !== promotion.start_date && (
-                      <> hasta {formatDate(promotion.end_date)}</>
-                    )}
+                  Válido:{" "}
+                  {formatPeriod(promotion.start_date, promotion.end_date)}
                 </span>
               </div>
               {/* Expired Badge */}
