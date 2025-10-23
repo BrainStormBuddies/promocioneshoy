@@ -2,11 +2,17 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   try {
+    // Parse query parameters from the request URL
+    const { searchParams } = new URL(request.url);
+    const statusFilter = searchParams.get("status");
+
     // Get the bearer token from environment variable
     const bearerToken = process.env.API_BEARER_TOKEN;
 
     if (!bearerToken) {
-      console.error("API_BEARER_TOKEN is not configured in environment variables");
+      console.error(
+        "API_BEARER_TOKEN is not configured in environment variables"
+      );
       return NextResponse.json(
         { error: "API configuration error" },
         { status: 500 }
@@ -24,11 +30,17 @@ export async function GET(request: Request) {
       );
     }
 
+    // Build the API URL with optional status filter
+    let fetchUrl = `${apiUrl}/items/Promotions?fields=*,media.*`;
+    if (statusFilter) {
+      fetchUrl += `&filter[status][_eq]=${encodeURIComponent(statusFilter)}`;
+    }
+
     // Fetch promotions from the backend API
-    const response = await fetch(`${apiUrl}/items/Promotions?fields=*,media.*`, {
+    const response = await fetch(fetchUrl, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${bearerToken}`,
+        Authorization: `Bearer ${bearerToken}`,
         "Content-Type": "application/json",
       },
       cache: "no-store", // Disable caching to always get fresh data
@@ -47,8 +59,8 @@ export async function GET(request: Request) {
     return NextResponse.json(data, {
       headers: {
         "Cache-Control": "no-cache, no-store, must-revalidate",
-        "Pragma": "no-cache",
-        "Expires": "0",
+        Pragma: "no-cache",
+        Expires: "0",
       },
     });
   } catch (error) {
@@ -59,4 +71,3 @@ export async function GET(request: Request) {
     );
   }
 }
-

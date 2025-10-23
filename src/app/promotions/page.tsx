@@ -46,7 +46,7 @@ export default function PromotionsPage() {
     const fetchPromotions = async () => {
       try {
         setLoading(true);
-        const response = await fetch("/api/promotions");
+        const response = await fetch("/api/promotions?status=published");
 
         if (!response.ok) {
           throw new Error("Failed to fetch promotions");
