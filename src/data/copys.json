@@ -120,24 +120,16 @@
         "brand": "Promociones Hoy!",
         "links": [
             {
-                "label": "Inicio",
-                "href": "#hero"
-            },
-            {
                 "label": "Promociones",
                 "href": "/promotions"
             },
             {
-                "label": "Cómo funciona",
-                "href": "#how-it-works"
-            },
-            {
-                "label": "Beneficios",
+                "label": "Características",
                 "href": "#features"
             },
             {
-                "label": "FAQ",
-                "href": "#faq"
+                "label": "Preguntas Frecuentes",
+                "href": "#faqs"
             }
         ]
     },
@@ -145,6 +137,24 @@
         "brand": "Promociones Hoy!",
         "description": "Todas las promociones de tarjetas en un solo lugar",
         "copyright": "© 2025 Promociones Hoy!. Todos los derechos reservados.",
+        "quickLinks": [
+            {
+                "label": "Inicio",
+                "href": "/"
+            },
+            {
+                "label": "Promociones",
+                "href": "/promotions"
+            },
+            {
+                "label": "Características",
+                "href": "/#features"
+            },
+            {
+                "label": "Preguntas Frecuentes",
+                "href": "/#faqs"
+            }
+        ],
         "links": [
             {
                 "label": "Términos de Servicio",

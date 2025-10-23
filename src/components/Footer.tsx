@@ -1,5 +1,6 @@
 "use client";
 
+import copys from "@/data/copys.json";
 import {
   CreditCard,
   Facebook,
@@ -10,7 +11,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import copys from "@/data/copys.json";
 
 const Footer = () => {
   const { footer } = copys;
@@ -80,7 +80,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Enlaces Rápidos</h4>
             <ul className="space-y-2">
-              {copys.navigation.links.map((link, index) => (
+              {footer.quickLinks.map((link, index) => (
                 <li key={index}>
                   <button
                     onClick={() => handleSectionNavigation(link.href)}
