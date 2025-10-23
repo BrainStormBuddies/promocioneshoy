@@ -25,8 +25,8 @@ const Waitlist = () => {
                   <iframe
                     src={process.env.NEXT_PUBLIC_GETFORM_FORM_URL}
                     width="100%"
-                    height="520"
-                    style={{ border: 'none' }}
+                    height="720"
+                    style={{ border: "none" }}
                     className=""
                     title="Formulario de lista de espera"
                   />
