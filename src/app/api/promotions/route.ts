@@ -55,6 +55,15 @@ export async function GET(request: Request) {
     }
 
     const data = await response.json();
+    // Add 'expired' property to promotions based on end_date
+    const currentDate = new Date();
+    data.data = data.data.map((promotion: any) => {
+      const endDate = new Date(promotion.end_date);
+      return {
+        ...promotion,
+        expired: endDate < currentDate,
+      };
+    });
 
     return NextResponse.json(data, {
       headers: {

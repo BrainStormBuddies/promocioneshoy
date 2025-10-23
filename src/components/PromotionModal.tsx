@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
-import { X, Calendar, ExternalLink, Tag, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import type { Promotion } from "@/app/promotions/page";
+import { Button } from "@/components/ui/button";
+import { Calendar, ExternalLink, Mail, Tag, X } from "lucide-react";
+import { useEffect } from "react";
 
 interface PromotionModalProps {
   promotion: Promotion;
@@ -47,10 +47,15 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
       "2x1": { label: "2x1", color: "bg-orange-500/10 text-orange-600" },
     };
 
-    const typeInfo = types[type] || { label: type, color: "bg-gray-500/10 text-gray-600" };
+    const typeInfo = types[type] || {
+      label: type,
+      color: "bg-gray-500/10 text-gray-600",
+    };
 
     return (
-      <span className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-semibold ${typeInfo.color}`}>
+      <span
+        className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-semibold ${typeInfo.color}`}
+      >
         <Tag className="h-4 w-4" />
         {typeInfo.label}
       </span>
@@ -96,33 +101,52 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
         <div className="p-6 md:p-8">
           {/* Title and Badge */}
           <div className="mb-4">
-            <div className="flex items-start justify-between gap-4 mb-3">
-              <h2 className="text-3xl font-bold text-foreground">{promotion.title}</h2>
-              {getPromotionTypeBadge(promotion.promo_type)}
-            </div>
+            <h2 className="text-3xl font-bold text-foreground mb-3">
+              {promotion.title}
+            </h2>
 
             {/* Date */}
-            <div className="flex items-center gap-2 text-sm text-green-900">
-              <Calendar className="h-4 w-4" />
-              <span>
-                Válido: {formatDate(promotion.start_date)}
-                {promotion.end_date && promotion.end_date !== promotion.start_date && (
-                  <> hasta {formatDate(promotion.end_date)}</>
-                )}
-              </span>
+            <div className="flex items-center justify-between gap-2 text-sm text-green-900">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                <span>
+                  Válido: {formatDate(promotion.start_date)}
+                  {promotion.end_date &&
+                    promotion.end_date !== promotion.start_date && (
+                      <> hasta {formatDate(promotion.end_date)}</>
+                    )}
+                </span>
+              </div>
+              {/* Expired Badge */}
+              {promotion.expired && (
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-red-500 text-white">
+                  Expirado
+                </span>
+              )}
             </div>
           </div>
 
           {/* Description */}
           <div className="mb-6">
-            <h3 className="text-lg font-semibold text-foreground mb-2">Descripción</h3>
-            <p className="text-green-900 leading-relaxed">{promotion.description}</p>
+            <h3 className="text-lg font-semibold text-foreground mb-2">
+              Descripción
+            </h3>
+            <p className="text-green-900 leading-relaxed">
+              {promotion.description}
+            </p>
+          </div>
+
+          {/* Promotion Type Badge */}
+          <div className="mb-3">
+            {getPromotionTypeBadge(promotion.promo_type)}
           </div>
 
           {/* Terms and Conditions */}
           {promotion.terms && (
-            <div className="mb-6 p-4 bg-muted/50 rounded-lg">
-              <h3 className="text-lg font-semibold text-foreground mb-2">Términos y Condiciones</h3>
+            <div className="my-6 p-4 bg-muted rounded-lg">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                ℹ️ Términos y Condiciones
+              </h3>
               <p className="text-sm text-green-900 leading-relaxed whitespace-pre-line">
                 {promotion.terms}
               </p>
@@ -132,10 +156,7 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
           {/* Source Info */}
           <div className="flex flex-col sm:flex-row gap-3">
             {promotion.source_url && (
-              <Button
-                asChild
-                className="flex-1"
-              >
+              <Button asChild className="flex-1">
                 <a
                   href={promotion.source_url}
                   target="_blank"
@@ -149,11 +170,7 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
             )}
 
             {promotion.source_email && (
-              <Button
-                asChild
-                variant="outline"
-                className="flex-1"
-              >
+              <Button asChild variant="outline" className="flex-1">
                 <a
                   href={`mailto:${promotion.source_email}`}
                   className="inline-flex items-center justify-center gap-2"
@@ -168,10 +185,15 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
           {/* Additional Images */}
           {promotion.media && promotion.media.length > 1 && (
             <div className="mt-6">
-              <h3 className="text-lg font-semibold text-foreground mb-3">Imágenes adicionales</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-3">
+                Imágenes adicionales
+              </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {promotion.media.slice(1).map((media) => (
-                  <div key={media.id} className="relative h-32 rounded-lg overflow-hidden bg-muted">
+                  <div
+                    key={media.id}
+                    className="relative h-32 rounded-lg overflow-hidden bg-muted"
+                  >
                     <img
                       src={media.file_url}
                       alt={media.alt_text || promotion.title}

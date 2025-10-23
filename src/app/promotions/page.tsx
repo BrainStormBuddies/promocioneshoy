@@ -28,6 +28,7 @@ export interface Promotion {
   promo_type: string;
   source_type: string;
   media: MediaItem[];
+  expired?: boolean;
 }
 
 interface PromotionsResponse {
@@ -82,7 +83,7 @@ export default function PromotionsPage() {
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Promociones <span className="text-primary">Activas</span>
+              Promociones
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Descubre las mejores ofertas y descuentos disponibles para tus

@@ -1,8 +1,8 @@
 "use client";
 
+import type { Promotion } from "@/app/promotions/page";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Tag } from "lucide-react";
-import type { Promotion } from "@/app/promotions/page";
 
 interface PromotionCardProps {
   promotion: Promotion;
@@ -27,10 +27,15 @@ const PromotionCard = ({ promotion, onClick }: PromotionCardProps) => {
       "2x1": { label: "2x1", color: "bg-orange-500/10 text-orange-600" },
     };
 
-    const typeInfo = types[type] || { label: type, color: "bg-gray-500/10 text-gray-600" };
+    const typeInfo = types[type] || {
+      label: type,
+      color: "bg-gray-500/10 text-gray-600",
+    };
 
     return (
-      <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold ${typeInfo.color}`}>
+      <span
+        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold ${typeInfo.color}`}
+      >
         <Tag className="h-3 w-3" />
         {typeInfo.label}
       </span>
@@ -58,33 +63,42 @@ const PromotionCard = ({ promotion, onClick }: PromotionCardProps) => {
       </div>
 
       <CardHeader className="pb-3">
-        <CardTitle className="text-xl line-clamp-2 group-hover:text-primary transition-colors">
+        <CardTitle className="text-xl line-clamp-2 group-hover:text-primary transition-colors mb-2">
           {promotion.title}
         </CardTitle>
+
+        {/* Date */}
+        <div className="flex items-center justify-between gap-2 text-xs text-green-900">
+          <div className="flex items-center gap-2">
+            <Calendar className="h-4 w-4" />
+            <span>
+              {formatDate(promotion.start_date)}
+              {promotion.end_date &&
+                promotion.end_date !== promotion.start_date && (
+                  <> - {formatDate(promotion.end_date)}</>
+                )}
+            </span>
+          </div>
+          {/* Expired Badge */}
+          {promotion.expired && (
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-red-500 text-white">
+              Expirado
+            </span>
+          )}
+        </div>
       </CardHeader>
 
       <CardContent>
+        {/* Description */}
         <p className="text-sm text-green-900 line-clamp-3 mb-4">
           {promotion.description}
         </p>
 
-        <div className="flex items-center gap-2 text-xs text-green-900">
-          <Calendar className="h-4 w-4" />
-          <span>
-            {formatDate(promotion.start_date)}
-            {promotion.end_date && promotion.end_date !== promotion.start_date && (
-              <> - {formatDate(promotion.end_date)}</>
-            )}
-          </span>
+        {/* Promotion Type Badge */}
+        <div className="flex">
+          {getPromotionTypeBadge(promotion.promo_type)}
         </div>
       </CardContent>
-
-      <div className="mx-4 mb-4 pt-4 border-t border-border flex items-center justify-between">
-        <span className="text-sm font-medium text-primary group-hover:underline">
-          Ver detalles →
-        </span>
-        {getPromotionTypeBadge(promotion.promo_type)}
-      </div>
     </Card>
   );
 };
