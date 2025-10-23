@@ -1,10 +1,10 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import copys from "@/data/copys.json";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,14 +20,11 @@ const Navbar = () => {
   };
 
   const handleWaitlistClick = () => {
-    // If we're on the main page, scroll to the section
-    if (pathname === "/") {
-      scrollToSection("waitlist");
-    } else {
-      // If we're on another page, navigate to main page with hash
-      router.push("/#waitlist");
-    }
-    setIsMenuOpen(false);
+    handleSectionNavigation("waitlist");
+  };
+
+  const handleBrandClick = () => {
+    handleSectionNavigation("home");
   };
 
   const handleLinkClick = (href: string) => {
@@ -46,6 +43,17 @@ const Navbar = () => {
     }
   };
 
+  const handleSectionNavigation = (sectionId: string) => {
+    // If we're on the main page, scroll to the section
+    if (pathname === "/") {
+      scrollToSection(sectionId);
+    } else {
+      // If we're on another page, navigate to main page with hash
+      router.push(`/#${sectionId}`);
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 py-3">
@@ -56,7 +64,7 @@ const Navbar = () => {
               <img src="/favicon.svg" alt="Logo" className="h-10 w-12" />
             </div>
             <button
-              onClick={() => router.push("/")}
+              onClick={handleBrandClick}
               className="text-xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               {copys.navigation.brand}

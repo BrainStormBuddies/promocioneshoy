@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import copys from "@/data/copys.json";
-import { useEffect, useState, useCallback } from "react";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 
 const Hero = () => {
   const scrollToWaitlist = useCallback(() => {
@@ -52,7 +52,10 @@ const Hero = () => {
   }, [displayText, isDeleting, currentIndex, typeSpeed, typewriterPhrases]);
 
   return (
-    <section className="pt-28 pb-16 bg-gradient-to-br from-brand-light to-background">
+    <section
+      id="home"
+      className="pt-28 pb-16 bg-gradient-to-br from-brand-light to-background"
+    >
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -91,7 +94,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
               <button
                 onClick={scrollToWaitlist}
-                className="bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white px-8 py-3 text-lg rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary-dark focus:ring-offset-2 h-11"
+                className="bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white px-8 py-2 text-lg rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary-dark focus:ring-offset-2 h-11"
                 type="button"
               >
                 {copys.hero.cta}
