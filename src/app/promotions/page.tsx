@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import PromotionCard from "@/components/PromotionCard";
 import PromotionModal from "@/components/PromotionModal";
 import { Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export interface MediaItem {
   id: string;
@@ -38,7 +38,9 @@ export default function PromotionsPage() {
   const [promotions, setPromotions] = useState<Promotion[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedPromotion, setSelectedPromotion] = useState<Promotion | null>(null);
+  const [selectedPromotion, setSelectedPromotion] = useState<Promotion | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchPromotions = async () => {
@@ -83,7 +85,8 @@ export default function PromotionsPage() {
               Promociones <span className="text-primary">Activas</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Descubre las mejores ofertas y descuentos disponibles para tus tarjetas de crédito
+              Descubre las mejores ofertas y descuentos disponibles para tus
+              tarjetas de crédito
             </p>
           </div>
         </div>
@@ -101,7 +104,9 @@ export default function PromotionsPage() {
           {error && (
             <div className="text-center py-20">
               <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-md mx-auto">
-                <p className="text-destructive font-semibold mb-2">Error al cargar promociones</p>
+                <p className="text-destructive font-semibold mb-2">
+                  Error al cargar promociones
+                </p>
                 <p className="text-sm text-muted-foreground">{error}</p>
               </div>
             </div>
@@ -109,7 +114,9 @@ export default function PromotionsPage() {
 
           {!loading && !error && promotions.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-muted-foreground text-lg">No hay promociones disponibles en este momento</p>
+              <p className="text-muted-foreground text-lg">
+                No hay promociones disponibles en este momento
+              </p>
             </div>
           )}
 
@@ -139,4 +146,3 @@ export default function PromotionsPage() {
     </div>
   );
 }
-
