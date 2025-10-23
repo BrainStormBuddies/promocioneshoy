@@ -27,6 +27,22 @@ const Navbar = () => {
     handleSectionNavigation("home");
   };
 
+  const handleLinkClick = (href: string) => {
+    // Check if it's a hash link (section scroll)
+    if (href.startsWith("#")) {
+      const sectionId = href.substring(1);
+      if (pathname === "/") {
+        scrollToSection(sectionId);
+      } else {
+        router.push(`/${href}`);
+      }
+    } else {
+      // It's a regular page route
+      router.push(href);
+      setIsMenuOpen(false);
+    }
+  };
+
   const handleSectionNavigation = (sectionId: string) => {
     // If we're on the main page, scroll to the section
     if (pathname === "/") {
@@ -49,29 +65,27 @@ const Navbar = () => {
             </div>
             <button
               onClick={handleBrandClick}
-              className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+              className="text-xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               {copys.navigation.brand}
             </button>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Button
-              variant="ghost"
-              onClick={() => handleSectionNavigation("features")}
-            >
-              Características
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => handleSectionNavigation("faq")}
-            >
-              Preguntas Frecuentes
-            </Button>
+          <div className="hidden md:flex items-center space-x-1">
+            {copys.navigation.links.map((link) => (
+              <Button
+                key={link.href}
+                variant="ghost"
+                onClick={() => handleLinkClick(link.href)}
+                className="cursor-pointer"
+              >
+                {link.label}
+              </Button>
+            ))}
             <Button
               onClick={handleWaitlistClick}
-              className="bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground ml-2 cursor-pointer"
             >
               Lista de Espera
             </Button>
@@ -81,7 +95,7 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="md:hidden cursor-pointer"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -94,23 +108,19 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 space-y-4 pb-4">
+          <div className="md:hidden mt-4 space-y-2 pb-4">
+            {copys.navigation.links.map((link) => (
+              <Button
+                key={link.href}
+                variant="ghost"
+                className="w-full justify-start cursor-pointer"
+                onClick={() => handleLinkClick(link.href)}
+              >
+                {link.label}
+              </Button>
+            ))}
             <Button
-              variant="ghost"
-              className="w-full justify-start"
-              onClick={() => handleSectionNavigation("features")}
-            >
-              Características
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start"
-              onClick={() => handleSectionNavigation("faqs")}
-            >
-              Preguntas Frecuentes
-            </Button>
-            <Button
-              className="w-full bg-brand-primary-dark hover:bg-brand-primary-dark/90 text-white"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground cursor-pointer"
               onClick={handleWaitlistClick}
             >
               Lista de Espera
