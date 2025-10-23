@@ -19,12 +19,45 @@ export function formatPeriod(
   endDate?: string,
   separator: string = "hasta"
 ): string {
-  const formattedStartDate = formatDate(startDate);
+  const startDateObj = new Date(startDate);
 
   if (!endDate || endDate === startDate) {
-    return formattedStartDate;
+    return formatDate(startDate);
   }
 
-  const formattedEndDate = formatDate(endDate);
-  return `${formattedStartDate} ${separator} ${formattedEndDate}`;
+  const endDateObj = new Date(endDate);
+
+  // Check if same year and month
+  const sameYear = startDateObj.getFullYear() === endDateObj.getFullYear();
+  const sameMonth = startDateObj.getMonth() === endDateObj.getMonth();
+
+  if (sameYear && sameMonth) {
+    // Same month and year: "06 al 08 de octubre de 2025"
+    const startDay = startDateObj.getDate();
+    const endDay = endDateObj.getDate();
+    const month = endDateObj.toLocaleDateString("es-ES", { month: "long" });
+    const year = endDateObj.getFullYear();
+
+    return `${startDay} ${
+      separator === "hasta" ? "al" : "-"
+    } ${endDay} de ${month} de ${year}`;
+  } else if (sameYear) {
+    // Same year, different month: "25 de octubre al 3 de noviembre de 2025"
+    const startDay = startDateObj.getDate();
+    const startMonth = startDateObj.toLocaleDateString("es-ES", {
+      month: "long",
+    });
+    const endDay = endDateObj.getDate();
+    const endMonth = endDateObj.toLocaleDateString("es-ES", { month: "long" });
+    const year = endDateObj.getFullYear();
+
+    return `${startDay} de ${startMonth} ${
+      separator === "hasta" ? "al" : "-"
+    } ${endDay} de ${endMonth} de ${year}`;
+  } else {
+    // Different years: use full format for both dates
+    const formattedStartDate = formatDate(startDate);
+    const formattedEndDate = formatDate(endDate);
+    return `${formattedStartDate} ${separator} ${formattedEndDate}`;
+  }
 }
