@@ -65,10 +65,10 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
       >
         {/* Header with Image */}
         <div className="relative">
-          {promotion.media?.[0] && (
+          {promotion.image_url && (
             <div className="relative h-64 w-full overflow-hidden rounded-t-lg bg-muted">
               <img
-                src={promotion.media[0].file_url}
+                src={promotion.image_url}
                 alt={promotion.title}
                 className="w-full h-full object-cover"
                 onError={(e) => {

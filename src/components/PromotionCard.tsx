@@ -34,7 +34,7 @@ const PromotionCard = ({ promotion, onClick }: PromotionCardProps) => {
     );
   };
 
-  const primaryImage = promotion.media?.[0]?.file_url || "/placeholder.svg";
+  const primaryImage = promotion.image_url || "/placeholder.svg";
 
   return (
     <Card

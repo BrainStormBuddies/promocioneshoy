@@ -27,6 +27,7 @@ export interface Promotion {
   source_email: string | null;
   promo_type: string;
   source_type: string;
+  image_url: string | null;
   media: MediaItem[];
   expired?: boolean;
 }
