@@ -5,13 +5,26 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+const monthNames = [
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre",
+];
+
 export function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("es-ES", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const day = dateString.split("-")[2];
+  const month = dateString.split("-")[1];
+  const year = dateString.split("-")[0];
+  return `${parseInt(day)} de ${monthNames[parseInt(month) - 1]} de ${year}`;
 }
 
 export function formatPeriod(
@@ -19,41 +32,37 @@ export function formatPeriod(
   endDate?: string,
   separator: string = "hasta"
 ): string {
-  const startDateObj = new Date(startDate);
-
   if (!endDate || endDate === startDate) {
     return formatDate(startDate);
   }
 
-  const endDateObj = new Date(endDate);
-
   // Check if same year and month
-  const sameYear = startDateObj.getFullYear() === endDateObj.getFullYear();
-  const sameMonth = startDateObj.getMonth() === endDateObj.getMonth();
+  const sameYear = startDate.split("-")[0] === endDate.split("-")[0];
+  const sameMonth = startDate.split("-")[1] === endDate.split("-")[1];
 
   if (sameYear && sameMonth) {
     // Same month and year: "06 al 08 de octubre de 2025"
-    const startDay = startDateObj.getDate();
-    const endDay = endDateObj.getDate();
-    const month = endDateObj.toLocaleDateString("es-ES", { month: "long" });
-    const year = endDateObj.getFullYear();
+    const startDay = startDate.split("-")[2];
+    const endDay = endDate.split("-")[2];
+    const month = endDate.split("-")[1];
 
-    return `${startDay} ${
-      separator === "hasta" ? "al" : "-"
-    } ${endDay} de ${month} de ${year}`;
+    const year = endDate.split("-")[0];
+    return `${startDay} ${separator === "hasta" ? "al" : "-"} ${endDay} de ${
+      monthNames[parseInt(month) - 1]
+    } de ${year}`;
   } else if (sameYear) {
     // Same year, different month: "25 de octubre al 3 de noviembre de 2025"
-    const startDay = startDateObj.getDate();
-    const startMonth = startDateObj.toLocaleDateString("es-ES", {
-      month: "long",
-    });
-    const endDay = endDateObj.getDate();
-    const endMonth = endDateObj.toLocaleDateString("es-ES", { month: "long" });
-    const year = endDateObj.getFullYear();
+    const startDay = startDate.split("-")[2];
+    const startMonth = startDate.split("-")[1];
+    const startMonthName = monthNames[parseInt(startMonth) - 1];
+    const endDay = endDate.split("-")[2];
+    const endMonth = endDate.split("-")[1];
+    const endMonthName = monthNames[parseInt(endMonth) - 1];
+    const year = endDate.split("-")[0];
 
-    return `${startDay} de ${startMonth} ${
+    return `${startDay} de ${startMonthName} ${
       separator === "hasta" ? "al" : "-"
-    } ${endDay} de ${endMonth} de ${year}`;
+    } ${endDay} de ${endMonthName} de ${year}`;
   } else {
     // Different years: use full format for both dates
     const formattedStartDate = formatDate(startDate);
