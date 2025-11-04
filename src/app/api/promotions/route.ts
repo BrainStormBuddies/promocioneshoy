@@ -36,6 +36,9 @@ export async function GET(request: Request) {
       fetchUrl += `&filter[status][_eq]=${encodeURIComponent(statusFilter)}`;
     }
 
+    // Add sorting by start_date descending
+    fetchUrl += `&sort=-start_date`;
+
     // Fetch promotions from the backend API
     const response = await fetch(fetchUrl, {
       method: "GET",
