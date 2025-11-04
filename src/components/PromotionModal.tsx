@@ -120,9 +120,10 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
             <h3 className="text-lg font-semibold text-foreground mb-2">
               Descripción
             </h3>
-            <p className="text-green-900 leading-relaxed">
-              {promotion.description}
-            </p>
+            <div
+              className="text-green-900 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: promotion.description }}
+            />
           </div>
 
           {/* Promotion Type Badge */}
@@ -136,9 +137,10 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 ℹ️ Términos y Condiciones
               </h3>
-              <p className="text-sm text-green-900 leading-relaxed whitespace-pre-line">
-                {promotion.terms}
-              </p>
+              <div
+                className="text-sm text-green-900 leading-relaxed whitespace-pre-line"
+                dangerouslySetInnerHTML={{ __html: promotion.terms }}
+              />
             </div>
           )}
 

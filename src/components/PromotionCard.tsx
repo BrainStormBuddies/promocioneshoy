@@ -78,9 +78,10 @@ const PromotionCard = ({ promotion, onClick }: PromotionCardProps) => {
 
       <CardContent>
         {/* Description */}
-        <p className="text-sm text-green-900 line-clamp-3 mb-4">
-          {promotion.description}
-        </p>
+        <div
+          dangerouslySetInnerHTML={{ __html: promotion.description }}
+          className="mb-4 text-sm text-muted-foreground h-16 overflow-hidden"
+        />
 
         {/* Promotion Type Badge */}
         <div className="flex">
