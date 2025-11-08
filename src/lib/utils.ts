@@ -20,7 +20,10 @@ const monthNames = [
   "diciembre",
 ];
 
-export function formatDate(dateString: string): string {
+export function formatDate(dateString: string | null): string {
+  if (!dateString) {
+    return "";
+  }
   const day = dateString.split("-")[2];
   const month = dateString.split("-")[1];
   const year = dateString.split("-")[0];

@@ -98,21 +98,23 @@ const PromotionModal = ({ promotion, onClose }: PromotionModalProps) => {
             </h2>
 
             {/* Date */}
-            <div className="flex items-center justify-between gap-2 text-sm text-green-900">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <span>
-                  Válido:{" "}
-                  {formatPeriod(promotion.start_date, promotion.end_date)}
-                </span>
+            {promotion.start_date && (
+              <div className="flex items-center justify-between gap-2 text-sm text-green-900">
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>
+                    Válido:{" "}
+                    {formatPeriod(promotion.start_date, promotion.end_date)}
+                  </span>
+                </div>
+                {/* Expired Badge */}
+                {promotion.expired && (
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-red-500 text-white">
+                    Expirado
+                  </span>
+                )}
               </div>
-              {/* Expired Badge */}
-              {promotion.expired && (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-red-500 text-white">
-                  Expirado
-                </span>
-              )}
-            </div>
+            )}
           </div>
 
           {/* Description */}

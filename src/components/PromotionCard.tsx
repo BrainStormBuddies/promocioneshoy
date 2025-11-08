@@ -60,20 +60,22 @@ const PromotionCard = ({ promotion, onClick }: PromotionCardProps) => {
         </CardTitle>
 
         {/* Date */}
-        <div className="flex items-center justify-between gap-2 text-xs text-green-900">
-          <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" />
-            <span>
-              {formatPeriod(promotion.start_date, promotion.end_date, "-")}
-            </span>
+        {promotion.start_date && (
+          <div className="flex items-center justify-between gap-2 text-xs text-green-900">
+            <div className="flex items-center gap-2">
+              <Calendar className="h-4 w-4" />
+              <span>
+                {formatPeriod(promotion.start_date, promotion.end_date, "-")}
+              </span>
+            </div>
+            {/* Expired Badge */}
+            {promotion.expired && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-red-500 text-white">
+                Expirado
+              </span>
+            )}
           </div>
-          {/* Expired Badge */}
-          {promotion.expired && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-red-500 text-white">
-              Expirado
-            </span>
-          )}
-        </div>
+        )}
       </CardHeader>
 
       <CardContent>
